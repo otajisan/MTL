@@ -18,6 +18,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // WebViewを生成
+    webView_ = [[UIWebView alloc] init];
+    webView_.frame = self.view.bounds;
+    webView_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    webView_.scalesPageToFit = YES;
+    [self.view addSubview:webView_];
+    //リクエストの生成
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://mtdev.jp/wordpress/"]];
+    [webView_ loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning
