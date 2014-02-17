@@ -20,15 +20,26 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     // WebViewを生成
-    webView_ = [[UIWebView alloc] init];
-    webView_.frame = self.view.bounds;
-    webView_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    webView_.scalesPageToFit = YES;
-    [self.view addSubview:webView_];
+    _webView = [[UIWebView alloc] init];
+    _webView.frame = self.view.bounds;
+    _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _webView.scalesPageToFit = YES;
+    [self.view addSubview:_webView];
     //リクエストの生成
     NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://mtdev.jp/wordpress/"]];
-    [webView_ loadRequest:request];
+    [_webView loadRequest:request];
 }
+
+// ぐるぐる
+-(void)webViewDidStartLoad:(UIWebView*)webView{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+// ぐるぐるを消す
+-(void)webViewDidFinishLoad:(UIWebView*)webView{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

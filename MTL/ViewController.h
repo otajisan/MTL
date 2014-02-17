@@ -12,7 +12,7 @@
 
 {
 @private
-    UIWebView* webView_;
+    UIWebView* _webView;
 }
 
 @end
